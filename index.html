@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeGen</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+
+    <div class="app-wrapper">
+        
+        <header class="top-bar">
+            <h1>CodeGen<span>.io</span></h1>
+            <p>Professional Asset Generator</p>
+        </header>
+
+        <main class="dashboard-grid">
+            
+            <section class="controls-deck panel">
+                <h2 class="panel-title">Configuration</h2>
+                
+                <div class="input-group">
+                    <label>Data Input</label>
+                    <input type="text" id="userInput" placeholder="Enter text or URL..." autocomplete="off">
+                </div>
+
+                <div class="action-grid">
+                    <button id="btnQR" class="btn primary">Generate QR</button>
+                    <button id="btnBar" class="btn primary">Generate Barcode</button>
+                </div>
+            </section>
+
+            <section class="preview-stage panel">
+                <div class="preview-header">
+                    <h2 class="panel-title">Live Preview</h2>
+                    <div class="utility-actions">
+                        <button id="printBtn" class="btn-icon" style="display: none;" title="Print">🖨️</button>
+                        <button id="downloadBtn" class="btn-icon" style="display: none;" title="Download">⬇️</button>
+                    </div>
+                </div>
+
+                <div id="canvas-area">
+                    <div id="qrcode"></div>
+                    <img id="barcode" alt="Barcode Preview">
+                    
+                    <div id="empty-state">
+                        <span class="icon">🔍</span>
+                        <p>Waiting for input...</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer style="text-align: center; margin-top: 30px; color: #94a3b8; font-size: 0.85rem; letter-spacing: 0.5px;">
+            <p>Developed by <strong>Nimesh Patel</strong></p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
