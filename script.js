@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnBar = document.getElementById("btnBar");
     const printBtn = document.getElementById("printBtn");
     const downloadBtn = document.getElementById("downloadBtn");
+    const scanBtn = document.getElementById("scanBtn");
+    const readerDiv = document.getElementById("reader");
 
     const qrContainer = document.getElementById("qrcode");
     const barImg = document.getElementById("barcode");
@@ -109,5 +111,36 @@ document.addEventListener("DOMContentLoaded", () => {
             a.href = barImg.src;
             a.click();
         }
+    });
+
+    let html5QrcodeScanner;
+
+    scanBtn.addEventListener("click", () => {
+        if (readerDiv.style.display === "block") {
+            // Stop scanning if it's already running
+            if (html5QrcodeScanner) {
+                html5QrcodeScanner.clear().catch(error => console.error("Failed to clear scanner.", error));
+            }
+            readerDiv.style.display = "none";
+            scanBtn.textContent = "📷 Scan Code";
+            return;
+        }
+
+        // Show scanner and change button text
+        readerDiv.style.display = "block";
+        scanBtn.textContent = "❌ Stop Scanning";
+
+        html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader",
+            { fps: 10, qrbox: { width: 250, height: 250 } },
+            false
+        );
+
+        html5QrcodeScanner.render((decodedText) => {
+            input.value = decodedText; // Automatically populate the input field with the scanned text
+            html5QrcodeScanner.clear(); // Stop scanning once a code is read
+            readerDiv.style.display = "none";
+            scanBtn.textContent = "📷 Scan Code";
+        }, (errorMessage) => { /* Ignore parsing errors, it fails silently until it spots a valid code */ });
     });
 });

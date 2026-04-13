@@ -8,6 +8,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </head>
 <body>
 
@@ -31,7 +32,10 @@
                 <div class="action-grid">
                     <button id="btnQR" class="btn primary">Generate QR</button>
                     <button id="btnBar" class="btn primary">Generate Barcode</button>
+                    <button id="scanBtn" class="btn primary">📷 Scan Code</button>
                 </div>
+
+                <div id="reader" style="display: none; width: 100%; margin-top: 20px; border-radius: 8px; overflow: hidden;"></div>
             </section>
 
             <section class="preview-stage panel">
